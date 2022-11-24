@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link rel="stylesheet" th:href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+<div class="center">
+    <div th:replace="fragments :: nav"></div>
+    <div class="content">
+        <div class="menuBar">
+            <ul  class="list-group">
+                <li class="list-group-item"><a th:href="@{/addStudent}"><p>Add Student</p></a></li>
+                <li class="list-group-item"><a th:href="@{/addTutor}"><p>Add Tutor</p></a></li>
+                <li class="list-group-item"><a th:href="@{/students}"><p>Show all students</p></a></li>
+                <li class="list-group-item"><a th:href="@{/tutors}"><p>Show all tutor</p></a></li>
+            </ul>
+        </div>
+    </div>
+    <div th:replace="fragments :: footer"></div>
+</div>
+</body>
+</html>

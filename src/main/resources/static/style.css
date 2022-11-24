@@ -1,0 +1,80 @@
+.menuBar a {
+    text-decoration: none;
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+.content {
+    margin-top: 6%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+.content a {
+    color: black;
+    text-decoration: none;
+}
+.personForm p {
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+.personForm button {
+    margin-top: 20px;
+}
+.listHeader {
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+.personInfo {
+    margin-bottom: 40px;
+}
+.personInfo h3 {
+    margin-top: 40px;
+}
+.searchBar {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+#searchButton {
+    width: 200px;
+}
+#sortButton {
+    width: 200px;
+}
+.justRow {
+    display: flex;
+    flex-direction: row;
+}
+#addButton {
+    width: 200px;
+}
+.nav {
+    background-color: dimgrey;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.nav a {
+    padding: 25px;
+    color: white;
+    text-decoration: none;
+}
+.editButtons {
+    display: flex;
+    flex-direction: row;
+}
+.editButtons a {
+    margin-right: 5px;
+}
+.footer {
+    background-color: dimgrey;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    height: 30px;
+}
+.footer p {
+    color: white;
+}

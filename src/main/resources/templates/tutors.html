@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tutors</title>
+    <link rel="stylesheet" th:href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+<div class="center">
+    <div th:replace="fragments :: nav"></div>
+    <div class="content">
+        <form th:action="@{/tutors}">
+            <div class="searchBar">
+                <input type="text" class="form-control" th:value="${name}" name="name" placeholder="Search tutor">
+            </div>
+            <div class="justRow">
+                <select class="form-select" th:name="sort">
+                    <option th:value="firstNameAsc">First Name asc</option>
+                    <option th:value="firstNameDesc">First Name desc</option>
+                    <option th:value="lastNameAsc">Last Name asc</option>
+                    <option th:value="lastNameDesc">Last Name desc</option>
+                </select>
+                <input type="submit" class="btn btn-secondary" th:value="Search" id="searchButton">
+            </div>
+        </form>
+        <h2 class="listHeader">Tutors:</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Subject</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="tutor: ${tutors}" th:object="${tutor}">
+                <td><a th:href="|@{/tutor?id=}*{id}|"><p th:text="*{firstName}"></p></a></td>
+                <td><a th:href="|@{/tutor?id=}*{id}|"><p th:text="*{lastName}"></p></a></td>
+                <td><a th:href="|@{/tutor?id=}*{id}|"><p th:text="*{subject.name}"></p></a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:replace="fragments :: footer"></div>
+</div>
+</body>
+</html>

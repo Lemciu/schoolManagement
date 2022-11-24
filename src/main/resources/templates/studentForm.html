@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet" th:href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+<div class="center">
+    <div th:replace="fragments :: nav"></div>
+    <div class="content">
+        <div class="personForm">
+            <form method="post" th:action="@{/saveStudent}" th:object="${student}">
+                <p>First Name:</p>
+                <input type="text" class="form-control" th:field="*{firstName}" minlength="2" th:required="required">
+                <p>Last Name:</p>
+                <input type="text" class="form-control" th:field="*{lastName}" th:required="required">
+                <p>Age</p>
+                <input type="number" class="form-control" th:field="*{age}" min="18" th:required="required">
+                <p>E mail:</p>
+                <input type="email" class="form-control" th:field="*{email}" placeholder="example.email@gmail.com" th:required="required">
+                <p>Field Of Study</p>
+                <select class="form-select" th:field="*{fieldOfStudy}">
+                    <option th:each="fieldOfStudy: ${fieldsOfStudy}" th:text="${fieldOfStudy.name}" th:value="${fieldOfStudy}"></option>
+                </select>
+                <input th:hidden="hidden" th:value="*{id}" th:name="studentId">
+                <button class="btn btn-secondary">Save</button>
+            </form>
+        </div>
+    </div>
+    <div th:replace="fragments :: footer"></div>
+</div>
+</body>
+</html>
