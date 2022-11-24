@@ -5,7 +5,7 @@ public enum Subject {
     ENGLISH("English"),
     FRENCH("French"),
     POLISH("Polish"),
-    MATHEMATICS("Matematics"),
+    MATHEMATICS("Mathematics"),
     CHEMISTRY("Chemistry"),
     PHYSICS("Physics");
 

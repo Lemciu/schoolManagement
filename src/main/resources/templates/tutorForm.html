@@ -13,16 +13,20 @@
     <div class="content">
         <div class="personForm">
             <form method="post" th:action="@{/saveTutor}" th:object="${tutor}">
-                <p>First Name:</p>
-                <input type="text" class="form-control" th:field="*{firstName}" minlength="2" th:required="required">
-                <p>Last Name:</p>
-                <input type="text" class="form-control" th:field="*{lastName}" th:required="required">
-                <p>Age</p>
-                <input type="number" class="form-control" th:field="*{age}" min="18" th:required="required">
-                <p>E mail:</p>
+                <h5>First Name:</h5>
+                <input type="text" class="form-control" th:field="*{firstName}">
+                <p th:errors="*{firstName}" class="warning"></p>
+                <h5>Last Name:</h5>
+                <input type="text" class="form-control" th:field="*{lastName}" >
+                <p th:errors="*{lastName}" class="warning"></p>
+                <h5>Age</h5>
+                <input type="number" class="form-control" th:field="*{age}" th:required="required">
+                <p th:errors="*{age}" class="warning"></p>
+                <h5>E mail:</h5>
                 <input type="email" class="form-control" th:field="*{email}" placeholder="example.email@gmail.com"
                        th:required="required">
-                <p>Subject</p>
+                <p th:errors="*{email}" class="warning"></p>
+                <h5>Subject</h5>
                 <select class="form-select" th:field="*{subject}">
                     <option th:each="subject: ${subjects}" th:text="${subject.name}"
                             th:value="${subject}"></option>

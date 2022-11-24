@@ -2,11 +2,14 @@ package pl.ml.student;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.ml.tutor.Tutor;
 import pl.ml.tutor.TutorService;
+
+import javax.validation.Valid;
 
 @Controller
 public class StudentController {
@@ -26,15 +29,6 @@ public class StudentController {
         return "studentForm";
     }
 
-    @GetMapping("/student")
-    public String getStudent(@RequestParam Long id,
-                             Model model) {
-        model.addAttribute("student", studentService.findById(id).orElseThrow());
-        model.addAttribute("tutors", tutorService.findAllByStudentId(id));
-        model.addAttribute("tutorsList", tutorService.findAll());
-        return "studentInfo";
-    }
-
     @GetMapping("/editStudent")
     public String editStudent(@RequestParam Long id,
                               Model model) {
@@ -43,6 +37,15 @@ public class StudentController {
         model.addAttribute("student", student);
         model.addAttribute("title", student.getFirstName() + " " + student.getLastName());
         return "studentForm";
+    }
+
+    @GetMapping("/student")
+    public String getStudent(@RequestParam Long id,
+                             Model model) {
+        model.addAttribute("student", studentService.findById(id).orElseThrow());
+        model.addAttribute("tutors", tutorService.findAllByStudentId(id));
+        model.addAttribute("tutorsList", tutorService.findAll());
+        return "studentInfo";
     }
 
     @GetMapping("/students")
@@ -62,7 +65,13 @@ public class StudentController {
     }
 
     @PostMapping("/saveStudent")
-    public String saveStudent(@RequestParam(required = false) Long studentId, Student student) {
+    public String saveStudent(@RequestParam(required = false) Long studentId,
+                              @Valid Student student, BindingResult bindingResult, Model model) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("fieldsOfStudy", FieldOfStudy.values());
+            return "studentForm";
+        }
         if (studentId != null) {
             student.setId(studentId);
         }

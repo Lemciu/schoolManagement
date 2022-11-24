@@ -2,11 +2,14 @@ package pl.ml.tutor;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.ml.student.Student;
 import pl.ml.student.StudentService;
+
+import javax.validation.Valid;
 
 @Controller
 public class TutorController {
@@ -62,7 +65,12 @@ public class TutorController {
     }
 
     @PostMapping("/saveTutor")
-    public String saveTutor(@RequestParam(required = false) Long tutorId, Tutor tutor) {
+    public String saveTutor(@RequestParam(required = false) Long tutorId,
+                            @Valid Tutor tutor, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("subjects", Subject.values());
+            return "tutorForm";
+        }
         if (tutorId != null) {
             tutor.setId(tutorId);
         }

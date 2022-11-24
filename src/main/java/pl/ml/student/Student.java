@@ -6,6 +6,10 @@ import lombok.Setter;
 import pl.ml.tutor.Tutor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 import java.util.Set;
 
@@ -17,9 +21,15 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank
+    @Size(min = 2)
     private String firstName;
+    @NotBlank
     private String lastName;
+    @Min(value = 18, message = "Age should be more than 18 years old")
     private Integer age;
+    @NotBlank
+    @Email
     private String email;
     @Enumerated(EnumType.STRING)
     private FieldOfStudy fieldOfStudy;
